@@ -3,15 +3,28 @@
 using namespace std;
 
 void TCup::add(TSubstance substance, double volume_in_ml){
+	bool already_in = false;
+	int pos = -1; //position
+	for (int i = 0; i < substances.size(); i++){
+		if (substances[i].get_name() == substance.get_name()) {
+			pos = i;
+			already_in = true;
+			break;
+		};
+	}
+	if (already_in){
+		volumes[pos]+=(volume_in_ml / 1e6);
+	} else {
 	substances.push_back(substance);
 	volumes.push_back(volume_in_ml / 1e6);
+	};
 };
 
 void TCup::add(string name, double volume_in_ml){
 	int _id = get_substance_id(name);
 	
 	if (_id>=0){
-		add(substancje[_id],volume_in_ml);
+		add(substancje[_id], volume_in_ml);
 	}
 	
 };

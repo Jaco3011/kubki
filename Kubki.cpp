@@ -11,7 +11,7 @@ int main(){
 	TCup kubek;
 	kubek.add("woda",100);
 	kubek.add("oliwa",250);
-	kubek.add("mleko",80);
+	kubek.add("woda",80);
 	kubek.add("kwas",50);
 	kubek.show();
 };
