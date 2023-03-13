@@ -7,6 +7,15 @@ void TCup::add(TSubstance substance, double volume_in_ml){
 	volumes.push_back(volume_in_ml / 1e6);
 };
 
+void TCup::add(string name, double volume_in_ml){
+	int _id = get_substance_id(name);
+	
+	if (_id>=0){
+		add(substancje[_id],volume_in_ml);
+	}
+	
+};
+
 void TCup::show(){
 	int count = substances.size();
 	for (int i = 0; i < count; i++){
@@ -15,6 +24,8 @@ void TCup::show(){
 		<< "; volume: " << volumes[i] * 1e6
 		<< " ml; mass: " << mass << " g\n";
 	};
+	print_coe_vol();
+	print_coe_mass();
 };
 
 void TCup::print_coe_vol(){
@@ -24,7 +35,7 @@ void TCup::print_coe_vol(){
         total_volume+=volumes[i];
     }
     for(int i = 0; i<count; i++){
-        if (i > 0) {cout " : ";}
+        if (i > 0) {cout << " : ";}
         cout << volumes[i]/total_volume;
     }
     cout << endl;
@@ -37,8 +48,28 @@ void TCup::print_coe_mass(){
         total_mass+=volumes[i]*substances[i].get_ro();
     }
     for(int i = 0; i<count; i++){
-        if (i > 0) {cout " : ";}
+        if (i > 0) {cout << " : ";}
         cout << volumes[i]*substances[i].get_ro()/total_mass;
     }
     cout << endl;
+};
+
+int TCup::get_substance_id(string name){
+	int count = substancje.size();
+	int _id = -1;
+	bool run = true;
+	while(run){
+		_id += 1;
+		string sub_name = substancje[_id].get_name();
+		
+		if (sub_name == name) {run = false;};
+		
+		if((_id + 1 == count) && run == true){
+			cout << "Nie znaleziono cieczy o podanej nazwie: \"" << name <<"\"!\n";
+			run = false;
+			_id = -1;
+		}		
+		
+	}
+	return _id;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 class TSubstance{
 	std::string name;
@@ -11,3 +12,5 @@ class TSubstance{
 	std::string get_name();
 	double get_ro();  
 };
+
+extern std::vector <TSubstance> substancje;
