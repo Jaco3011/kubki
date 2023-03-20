@@ -10,7 +10,7 @@ int main(){
 	};*/
 	TCup kubek;
 	kubek.add("woda",100);
-	kubek.add("oliwa",250);
+	//kubek.add("oliwa",250);
 	kubek.add("woda",80);
 	kubek.add("kwas",50);
 	kubek.show();
@@ -30,5 +30,8 @@ int main(){
 	kubek.show();
 	kubek.add_to_mass_coe("woda",90);
 	cout<<endl<<"Dodano wody:\n";
+	kubek.show();
+	kubek.add_to_mass_coe("oliwa",10);
+	cout<<endl<<"Dodano oliwy:\n";
 	kubek.show();
 }
