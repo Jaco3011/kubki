@@ -53,11 +53,11 @@ void TCup::add_to_mass_coe(std::string name, double target_percent){
 	}
 	int _id=TSubstance::get_substance_id(substances,name,false);
 	if (_id<0){
-		this->add(name,1e6*target_percent*sum/(1-target_percent));
+		this->add(name,1e6*target_percent*sum/(1-target_percent)/ro);
 		return;
 	} 
 	if(volumes[_id]/sum>=target_percent) return;
-	this->add(name, 1e6 * ((target_percent*sum - volumes[_id])/(1-target_percent)));
+	this->add(name, 1e6 *((target_percent*sum - volumes[_id]*ro)/(1-target_percent))/ro);
 };
 
 void TCup::show(){
