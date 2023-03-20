@@ -33,11 +33,11 @@ void TCup::add_to_vol_coe(string name, double target_percent){
 		sum+=volumes[i];
 	}
 	int _id=TSubstance::get_substance_id(substances,name,false);
+	if(volumes[_id]/sum>=target_percent) return;
 	if (_id<0){
 		this->add(name,1e6*target_percent*sum/(1-target_percent));
 		return;
 	} 
-	if(volumes[_id]/sum>=target_percent) return;
 	this->add(name, 1e6 * ((target_percent*sum - volumes[_id])/(1-target_percent)));
 };
 
@@ -52,11 +52,11 @@ void TCup::add_to_mass_coe(std::string name, double target_percent){
 		sum+=volumes[i]*substances[i].get_ro();
 	}
 	int _id=TSubstance::get_substance_id(substances,name,false);
+	if(volumes[_id]*ro/sum>=target_percent) return;
 	if (_id<0){
 		this->add(name,1e6*target_percent*sum/(1-target_percent)/ro);
 		return;
-	} 
-	if(volumes[_id]/sum>=target_percent) return;
+	}
 	this->add(name, 1e6 *((target_percent*sum - volumes[_id]*ro)/(1-target_percent))/ro);
 };
 
